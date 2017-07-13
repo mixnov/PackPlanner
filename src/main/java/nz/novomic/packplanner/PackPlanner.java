@@ -20,16 +20,16 @@ public class PackPlanner {
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException {
-        // TODO code application logic here
+        // Make BufferedReader object to read the info from console
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         Scanner in = new Scanner(System.in);
         String s;
         System.out.print("Please enter paks' data according the format:\n" +
             "[Sort order],[max pieces per pack],[max weight per pack].\n" +
-            "Sort order: NATURAL, SHORT_TO_LONG, LONG_TO_SHORT.\n" + 
+            "Sort order: NATURAL, SHORT_TO_LONG, LONG_TO_SHORT.\n" +
             "--> ");
 
-
+        // Get the sort param and params of the pack
         s = in.next();
         System.out.println(java.util.Arrays.toString(s.split("\\,")));
         String[] params = s.split("\\,");
@@ -42,8 +42,10 @@ public class PackPlanner {
             "itemsWeight = " + itemsWeight);
         System.out.print("Please enter items data according the format:\n" +
             "[item id],[item length],[item quantity],[piece weight].\n" +
-            "Empty row - end of the list.\n" + 
+            "Empty row - end of the list.\n" +
             "--> ");
+
+        // Get the items list
         s = br.readLine();
         List<Item> listOfItems = new ArrayList<Item>();
         while (s.length() > 0) {
@@ -56,13 +58,13 @@ public class PackPlanner {
             s = br.readLine();
         }
 
-        
+        // Create the object of the PackCalculator class and run the calculation
         PackCalculator packCalculator = new PackCalculator(sortType, listOfItems);
         List<Pack> result = packCalculator.calculate(itemsQuantity, itemsWeight);
 
+        // Show the result.
         for (Pack pack : result) {
             System.out.println(pack.toString());
         }
-
     }
 }
