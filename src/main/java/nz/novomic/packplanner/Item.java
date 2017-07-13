@@ -14,10 +14,6 @@ public class Item {
         this.weight = weight;
     }
 
-    public int getId() {
-        return this.id;
-    }
-
     public Integer getLength() {
         return this.length;
     }
@@ -31,10 +27,11 @@ public class Item {
     }
 
     public String toString() {
-        return "" + this.id + "," + this.length + "," + this.quantity + "," + this.weight + "\n";
+        return "" + this.id + "," + this.length + "," + this.quantity + "," 
+                + this.weight + "\n";
     }
 
-    public Item split(int quantity) {
+    Item split(int quantity) {
         this.quantity -= quantity;
         return new Item(this.id, this.length, quantity, this.weight);
     }

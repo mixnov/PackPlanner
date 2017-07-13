@@ -17,27 +17,11 @@ public class Pack {
         listOfItems = new ArrayList<Item>();
     }
 
-    public int getId() {
-        return this.id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public List<Item> getListOfItems() {
-        return this.listOfItems;
-    }
-
-    public void setId(List<Item> listOfItems) {
-        this.listOfItems = listOfItems;
-    }
-
-    public int getLength() {
+    private int getMaxLength() {
         return this.maxLength;
     }
 
-    public int getQuantity() {
+    private int getQuantity() {
         int quantity = 0;
         for (Item item : listOfItems) {
             quantity += item.getQuantity();
@@ -45,7 +29,7 @@ public class Pack {
         return quantity;
     }
 
-    public double getWeight() {
+    private double getWeight() {
         double weight = 0;
         for (Item item : listOfItems) {
             weight += item.getQuantity() * item.getWeight();
@@ -53,16 +37,16 @@ public class Pack {
         return weight;
     }
 
-    public void addItem(Item item) {
+    void addItem(Item item) {
         listOfItems.add(item);
-        maxLength = Math.max(maxLength, item.getLength());
+        this.maxLength = Math.max(this.maxLength, item.getLength());
     }
 
-    public int getAllowedQuantity(Item item, int itemsQuantity, double itemsWeight) {
+    int getAllowedQuantity(Item item, int itemsQuantity, double itemsWeight) {
         int quantity = 0;
         double weight = 0;
         quantity = Math.min(itemsQuantity - this.getQuantity(), item.getQuantity());
-        weight = Math.min(itemsWeight - this.getQuantity(), item.getQuantity() * item.getWeight());
+        weight = Math.min(itemsWeight - this.getWeight(), item.getQuantity() * item.getWeight());
         quantity = Math.min(quantity, (int) (weight / item.getWeight()));
         return quantity;
     }
@@ -72,7 +56,8 @@ public class Pack {
         for (Item item : listOfItems) {
             output += item.toString();
         }
-        output += "Pack Length: " + this.getLength() + ", Pack Weight: " + (double) Math.round(this.getWeight() * 100) / 100 + "\n";
+        output += "Pack Length: " + this.getMaxLength() + ", Pack Weight: "
+                + (double) Math.round(this.getWeight() * 100) / 100 + "\n";
         return output;
     }
 }

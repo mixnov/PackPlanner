@@ -13,9 +13,8 @@ public class PackCalculator {
         this.listOfItems = listOfItems;
     }
 
-    public List<Pack> calculate(int itemsQuantity, double itemsWeight) {
+    List<Pack> calculate(int itemsQuantity, double itemsWeight) {
         sort();
-
         return pack(itemsQuantity, itemsWeight);
     }
 
@@ -37,7 +36,8 @@ public class PackCalculator {
         Pack pack = new Pack();
         for (Item item : listOfItems) {
             while (item.getQuantity() > 0) {
-                int quantity = pack.getAllowedQuantity(item, itemsQuantity, itemsWeight);
+                int quantity = pack.getAllowedQuantity(item, itemsQuantity,
+                        itemsWeight);
                 if (quantity > 0) {
                     pack.addItem(item.split(quantity));
                 } else {
@@ -49,6 +49,4 @@ public class PackCalculator {
         result.add(pack);
         return result;
     }
-
-    //private void
 }
