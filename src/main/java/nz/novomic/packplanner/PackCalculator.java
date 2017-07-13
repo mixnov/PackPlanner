@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Containes the methods to sort the List of Items and put the Items from the 
+ * Containes the methods to sort the List of Items and put the Items from the
  * List into the Packs
  *
  * @author Mikhail
@@ -26,7 +26,7 @@ public class PackCalculator {
      * @param itemsWeight The max weight of Items in the Pack
      * @return
      */
-    List<Pack> calculate(int itemsQuantity, double itemsWeight) {
+    public List<Pack> calculate(int itemsQuantity, double itemsWeight) {
         sort();
         return pack(itemsQuantity, itemsWeight);
     }

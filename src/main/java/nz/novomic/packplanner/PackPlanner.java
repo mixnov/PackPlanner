@@ -24,10 +24,10 @@ public class PackPlanner {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         Scanner in = new Scanner(System.in);
         String s;
-        System.out.print("Please enter paks' data according the format:\n" +
-            "[Sort order],[max pieces per pack],[max weight per pack].\n" +
-            "Sort order: NATURAL, SHORT_TO_LONG, LONG_TO_SHORT.\n" +
-            "--> ");
+        System.out.print("Please enter paks' data according the format:\n"
+                + "[Sort order],[max pieces per pack],[max weight per pack].\n"
+                + "Sort order: NATURAL, SHORT_TO_LONG, LONG_TO_SHORT.\n"
+                + "--> ");
 
         // Get the sort param and params of the pack
         s = in.next();
@@ -37,13 +37,13 @@ public class PackPlanner {
         int itemsQuantity = Integer.parseInt(params[1]);
         float itemsWeight = Float.parseFloat(params[2]);
 
-        System.out.println("sortType = " + sortType + "\n" +
-            "itemsQuantity = " + itemsQuantity + "\n" +
-            "itemsWeight = " + itemsWeight);
-        System.out.print("Please enter items data according the format:\n" +
-            "[item id],[item length],[item quantity],[piece weight].\n" +
-            "Empty row - end of the list.\n" +
-            "--> ");
+        System.out.println("sortType = " + sortType + "\n"
+                + "itemsQuantity = " + itemsQuantity + "\n"
+                + "itemsWeight = " + itemsWeight);
+        System.out.print("Please enter items data according the format:\n"
+                + "[item id],[item length],[item quantity],[piece weight].\n"
+                + "Empty row - end of the list.\n"
+                + "--> ");
 
         // Get the items list
         s = br.readLine();
@@ -51,8 +51,8 @@ public class PackPlanner {
         while (s.length() > 0) {
             params = s.split("\\,");
             listOfItems.add(new Item(Integer.parseInt(params[0]),
-                Integer.parseInt(params[1]), Integer.parseInt(params[2]),
-                Double.parseDouble(params[3])));
+                    Integer.parseInt(params[1]), Integer.parseInt(params[2]),
+                    Double.parseDouble(params[3])));
             System.out.println("'" + s + "' " + s.length());
             System.out.print("--> ");
             s = br.readLine();

@@ -21,15 +21,15 @@ public class Item {
     }
 
     public Integer getLength() {
-        return this.length;
+        return length;
     }
 
     public int getQuantity() {
-        return this.quantity;
+        return quantity;
     }
 
     public double getWeight() {
-        return this.weight;
+        return weight;
     }
 
     /**
@@ -38,19 +38,20 @@ public class Item {
      * @return The string with Item's parameters
      */
     public String toString() {
-        return "" + this.id + "," + this.length + "," + this.quantity + ","
-                + this.weight + "\n";
+        return "" + id + "," + length + "," + quantity + "," + weight + "\n";
     }
 
     /**
+     * Split the Item object into two Item Objects
      *
      * @param quantity The quantity ot the Item has to be devided out of the
      * Item into a new Object
      * @return New Object of Item class with the parameters of the original
      * object and with quantity get as parameter
      */
-    Item split(int quantity) {
+    public Item split(int quantity) {
         this.quantity -= quantity;
-        return new Item(this.id, this.length, quantity, this.weight);
+        return new Item(id, length, quantity, weight);
     }
 }
+    
