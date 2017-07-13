@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class Pack {
 
-    private static int maxId = 0;
+    public static int maxId;
     private int id;
     private List<Item> listOfItems;
     private int maxLength;

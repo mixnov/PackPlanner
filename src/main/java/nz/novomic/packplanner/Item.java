@@ -54,4 +54,3 @@ public class Item {
         return new Item(id, length, quantity, weight);
     }
 }
-    

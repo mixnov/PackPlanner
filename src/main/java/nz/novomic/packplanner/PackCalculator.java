@@ -56,6 +56,8 @@ public class PackCalculator {
      */
     private List<Pack> pack(int itemsQuantity, double itemsWeight) {
         ArrayList<Pack> result = new ArrayList<>();
+
+        Pack.maxId = 0;
         Pack pack = new Pack();
 
         // Loop through the Items list
