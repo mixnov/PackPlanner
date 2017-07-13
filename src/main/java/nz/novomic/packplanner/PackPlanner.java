@@ -29,13 +29,33 @@ public class PackPlanner {
                 + "Sort order: NATURAL, SHORT_TO_LONG, LONG_TO_SHORT.\n"
                 + "--> ");
 
-        // Get the sort param and params of the pack
         s = in.next();
-        System.out.println(java.util.Arrays.toString(s.split("\\,")));
+//        System.out.println(java.util.Arrays.toString(s.split("\\,")));
         String[] params = s.split("\\,");
-        SortType sortType = SortType.valueOf(params[0]);
-        int itemsQuantity = Integer.parseInt(params[1]);
-        float itemsWeight = Float.parseFloat(params[2]);
+        if (params.length < 3) {
+            System.out.println("The number of parameters is less then required!\n"
+                    + "Please, make sure you folow the instruction.\n");
+            System.exit(1);
+        }
+        SortType sortType = SortType.NATURAL;
+        int itemsQuantity = 0;
+        float itemsWeight = 0;
+        try {
+            // Get the sort param and params of the pack
+            sortType = SortType.valueOf(params[0]);
+            itemsQuantity = Integer.parseInt(params[1]);
+            itemsWeight = Float.parseFloat(params[2]);
+        } catch (NumberFormatException e) {
+            System.out.println("Something wrong with the numbers you entered!\n"
+                    + "Please, make sure you folow the instruction.\n");
+            System.exit(1);
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("The sort order you entered is not from the list!\n"
+                    + "Please, make sure you folow the instruction.\n");
+            System.exit(1);
+
+        }
 
         System.out.println("sortType = " + sortType + "\n"
                 + "itemsQuantity = " + itemsQuantity + "\n"
@@ -50,9 +70,21 @@ public class PackPlanner {
         List<Item> listOfItems = new ArrayList<Item>();
         while (s.length() > 0) {
             params = s.split("\\,");
-            listOfItems.add(new Item(Integer.parseInt(params[0]),
-                    Integer.parseInt(params[1]), Integer.parseInt(params[2]),
-                    Double.parseDouble(params[3])));
+            if (params.length < 4) {
+                System.out.println("The number of parameters is less then required!\n"
+                        + "Please, make sure you folow the instruction.\n");
+                System.exit(1);
+            }
+
+            try {
+                listOfItems.add(new Item(Integer.parseInt(params[0]),
+                        Integer.parseInt(params[1]), Integer.parseInt(params[2]),
+                        Double.parseDouble(params[3])));
+            } catch (NumberFormatException e) {
+                System.out.println("Something wrong with the numbers you entered!\n"
+                        + "Please, make sure you folow the instruction.\n");
+                System.exit(1);
+            }
             System.out.println("'" + s + "' " + s.length());
             System.out.print("--> ");
             s = br.readLine();
